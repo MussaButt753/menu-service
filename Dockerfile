@@ -31,4 +31,4 @@ COPY app app
 EXPOSE 3000
 
 ENTRYPOINT ["bundle", "exec"]
-CMD ["rails", "server", "-u", "puma"]
+CMD ["rails", "server", "-b", "0.0.0.0"]
