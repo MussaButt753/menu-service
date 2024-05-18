@@ -2,9 +2,10 @@
 
 FactoryBot.define do
   factory :modifier do
-    item { nil }
-    modifier_group { nil }
     display_order { 1 }
     default_quantity { 1 }
+
+    item
+    modifier_group
   end
 end

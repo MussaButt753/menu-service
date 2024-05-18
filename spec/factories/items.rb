@@ -2,9 +2,17 @@
 
 FactoryBot.define do
   factory :item do
-    type { '' }
+    type { 'Product' }
     label { 'MyString' }
     description { 'MyString' }
     price { 1.5 }
+  end
+
+  factory :product, parent: :item do
+    type { "Product" }
+  end
+
+  factory :component, parent: :item do
+    type { "Component" }
   end
 end

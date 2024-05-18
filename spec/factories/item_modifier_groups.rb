@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :item_modifier_group do
-    item { nil }
+    item
     modifier_group
   end
 end
