@@ -1,0 +1,44 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  min_messages: warning
+  port: <%= ENV.fetch("MENU_SERVICE_DATABASE_PORT", 5432) %>
+  prepared_statements: false
+  variables:
+    statement_timeout: <%= ENV.fetch("MENU_SERVICE_DEFAULT_DB_STATEMENT_TIMEOUT", "3s") %>
+
+development:
+  <<: *default
+  database: <%= ENV.fetch("MENU_SERVICE_DATABASE_NAME", "MENU_SERVICE_development") %>
+  username: <%= ENV.fetch("MENU_SERVICE_DATABASE_USERNAME", "postgres") %>
+  password: <%= ENV.fetch("MENU_SERVICE_DATABASE_PASSWORD", "postgres") %>
+  host: <%= ENV.fetch("MENU_SERVICE_DATABASE_HOST", "postgres") %>
+
+test:
+  <<: *default
+  database: <%= ENV.fetch("MENU_SERVICE_DATABASE_NAME", "MENU_SERVICE_development") %>
+  username: <%= ENV.fetch("MENU_SERVICE_DATABASE_USERNAME", "postgres") %>
+  password: <%= ENV.fetch("MENU_SERVICE_DATABASE_PASSWORD", "postgres") %>
+  host: <%= ENV.fetch("MENU_SERVICE_DATABASE_HOST", "postgres") %>
+
+
+# production:
+#   primary:
+#     <<: *default_primary
+#     database: <%= ENV.fetch("MENU_SERVICE_DATABASE_NAME", "MENU_SERVICE_production") %>
+#     pool: 40
+#   primary_replica:
+#     <<: *default_replica
+#     database: <%= ENV.fetch("MENU_SERVICE_DATABASE_NAME", "MENU_SERVICE_production") %>
+#     pool: 40
+
+# staging:
+#   primary:
+#     <<: *default_primary
+#     database: <%= ENV.fetch("MENU_SERVICE_DATABASE_NAME", "MENU_SERVICE_production") %>
+#     pool: 25
+#   primary_replica:
+#     <<: *default_replica
+#     database: <%= ENV.fetch("MENU_SERVICE_DATABASE_NAME", "MENU_SERVICE_production") %>
+#     pool: 25

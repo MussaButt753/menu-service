@@ -1,0 +1,10 @@
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'db/**/*.rb'
+    - 'bin/**/*'
+    - 'config/**/*'
+Style/Documentation:
+  Enabled: false
