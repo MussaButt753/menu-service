@@ -24,19 +24,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_18_145301) do
   end
 
   create_table "items", force: :cascade do |t|
+    t.string "identifier", null: false
     t.string "type", null: false
     t.string "label", null: false
     t.string "description"
     t.float "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["identifier"], name: "index_items_on_identifier", unique: true
     t.index ["type"], name: "index_items_on_type"
   end
 
   create_table "menu_sections", force: :cascade do |t|
     t.bigint "menu_id", null: false
     t.bigint "section_id", null: false
-    t.integer "default_order", default: 0, null: false
+    t.integer "display_order", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["menu_id"], name: "index_menu_sections_on_menu_id"
@@ -44,27 +46,31 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_18_145301) do
   end
 
   create_table "menus", force: :cascade do |t|
+    t.string "identifier", null: false
     t.string "label", null: false
     t.string "state"
     t.datetime "start_date"
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["identifier"], name: "index_menus_on_identifier", unique: true
   end
 
   create_table "modifier_groups", force: :cascade do |t|
+    t.string "identifier", null: false
     t.string "label", null: false
     t.integer "selection_required_min"
     t.integer "selection_required_max"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["identifier"], name: "index_modifier_groups_on_identifier", unique: true
   end
 
   create_table "modifiers", force: :cascade do |t|
     t.bigint "item_id", null: false
     t.bigint "modifier_group_id", null: false
     t.integer "display_order", default: 0, null: false
-    t.integer "default_quantity", null: false
+    t.integer "default_quantity", default: 0, null: false
     t.float "price_override"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -75,7 +81,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_18_145301) do
   create_table "section_items", force: :cascade do |t|
     t.bigint "section_id", null: false
     t.bigint "item_id", null: false
-    t.integer "dafault_order", default: 0, null: false
+    t.integer "display_order", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_section_items_on_item_id"
@@ -83,10 +89,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_18_145301) do
   end
 
   create_table "sections", force: :cascade do |t|
+    t.string "identifier", null: false
     t.string "label", null: false
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["identifier"], name: "index_sections_on_identifier", unique: true
   end
 
   add_foreign_key "item_modifier_groups", "items"

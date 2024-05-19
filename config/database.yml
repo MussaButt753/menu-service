@@ -17,7 +17,7 @@ development:
 
 test:
   <<: *default
-  database: <%= ENV.fetch("MENU_SERVICE_DATABASE_NAME", "MENU_SERVICE_development") %>
+  database: <%= ENV.fetch("MENU_SERVICE_DATABASE_NAME", "MENU_SERVICE_test") %>
   username: <%= ENV.fetch("MENU_SERVICE_DATABASE_USERNAME", "postgres") %>
   password: <%= ENV.fetch("MENU_SERVICE_DATABASE_PASSWORD", "postgres") %>
   host: <%= ENV.fetch("MENU_SERVICE_DATABASE_HOST", "postgres") %>

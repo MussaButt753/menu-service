@@ -5,7 +5,7 @@ class CreateMenuSections < ActiveRecord::Migration[7.1]
     create_table :menu_sections do |t|
       t.references :menu, null: false, foreign_key: true
       t.references :section, null: false, foreign_key: true
-      t.integer :default_order, null: false, default: 0
+      t.integer :display_order, null: false, default: 0
 
       t.timestamps
     end

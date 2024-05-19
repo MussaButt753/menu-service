@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :menu_section do
-    default_order { 0 }
+    display_order { 0 }
 
     menu
     section

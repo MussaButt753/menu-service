@@ -1,0 +1,211 @@
+modifier_groups:
+  - identifier: "MG-1"
+    label: "Sauces"
+    selection_required_min: 0
+    selection_required_max: 2
+    modifiers:
+      - price_override: 1.1
+        default_quantity: 10
+        display_order: 0
+        item:
+          identifier: "S-1"
+          type: Component
+          price: 1.0
+          label: "Tomato Sauce"
+          description: "Tomato Sauce"
+      - default_quantity: 10
+        display_order: 1
+        item:
+          identifier: "S-2"
+          type: Component
+          price: 1.0
+          label: "Thousand island Sauce"
+          description: "Thousand island Sauce"
+      - default_quantity: 12
+        display_order: 3
+        item:
+          identifier: "S-3"
+          type: Component
+          price: 1.0
+          label: "Garlic Sauce"
+          description: "Garlic Sauce"
+      - default_quantity: 15
+        display_order: 4
+        item:
+          identifier: "S-4"
+          type: Component
+          price: 1.0
+          label: "Greek Sauce"
+          description: "Greek Sauce"
+
+  - identifier: "MG-2"
+    label: "Pizza sizes"
+    selection_required_min: 1
+    selection_required_max: 1
+    modifiers:
+      - default_quantity: 10
+        display_order: 0
+        item:
+          identifier: "PS-1"
+          type: Component
+          price: 4.0
+          label: "7 inch Pizza"
+          description: "7 inch Pizza"
+      - default_quantity: 10
+        display_order: 1
+        item:
+          identifier: "PS-2"
+          type: Component
+          price: 6.0
+          label: "10 inch Pizza"
+          description: "10 inch Pizza"
+      - default_quantity: 10
+        display_order: 2
+        item:
+          identifier: "PS-3"
+          type: Component
+          price: 9.0
+          label: "12 inch Pizza"
+          description: "12 inch Pizza"
+  - identifier: "MG-3"
+    label: "Burger sizes"
+    selection_required_min: 1
+    selection_required_max: 1
+    modifiers:
+      - default_quantity: 10
+        display_order: 0
+        item:
+          identifier: "BS-1"
+          type: Component
+          price: 4.0
+          label: "100 gram Burger"
+          description: "100 gram Burger"
+      - default_quantity: 20
+        display_order: 1
+        item:
+          identifier: "BS-2"
+          type: Component
+          price: 4.0
+          label: "150 gram Burger"
+          description: "150 gram Burger"
+
+menus:
+  - label: Pizza Menu
+    identifier: "M-1"
+    state: "s1"
+    start_date: "2024-05-18"
+    end_date: "2025-05-19"
+    sections:
+      - label: "Veg Pizzas"
+        identifier: "Sec-1a"
+        display_order: 0
+        description: "Veg pizzas"
+        items:
+          - label: "Cheese Pizza"
+            description: "Cheese Pizza"
+            price: 9
+            type: Product
+            display_order: 0
+            identifier: "CP-1"
+            modifier_group_identifiers:
+              - MG-1
+          - label: "Vegitables Pizza"
+            description: "Vegitables Pizza"
+            price: 9
+            type: Product
+            display_order: 1
+            identifier: "CP-2"
+            modifier_group_identifiers:
+              - MG-1
+          - label: "Margherita Pizza"
+            description: "Margherita Pizza"
+            price: 9.5
+            type: Product
+            display_order: 2
+            identifier: "CP-3"
+            modifier_group_identifiers:
+              - MG-1
+
+      - label: "Chicken Pizzas"
+        display_order: 1
+        identifier: "Sec-1b"
+        description: "Chicken pizzas"
+        items:
+          - label: "Fajita Pizza"
+            description: "Fajita Pizza"
+            price: 9
+            type: Product
+            display_order: 0
+            identifier: "ChkP-1"
+            modifier_group_identifiers:
+              - MG-2
+          - label: "BBQ Pizza"
+            description: "BBQ Pizza"
+            price: 9
+            type: Product
+            display_order: 1
+            identifier: "ChkP-2"
+            modifier_group_identifiers:
+              - MG-2
+          - label: "Grilled Pizza"
+            description: "Grilled Pizza"
+            price: 9.5
+            type: Product
+            display_order: 2
+            identifier: "ChkP-3"
+            modifier_group_identifiers:
+              - MG-2
+
+  - label: Burgers Menu
+    state: "s2"
+    start_date: "2024-05-18"
+    end_date: "2025-05-18"
+    identifier: "M-2"
+    sections:
+      - label: "Veg Burgers"
+        display_order: 0
+        description: "Veg Burgers"
+        identifier: "Sec-2a"
+        items:
+          - label: "Veg patty Burger"
+            description: "Veg patty Burger"
+            price: 9
+            type: Product
+            display_order: 0
+            identifier: "VB-1"
+            modifier_group_identifiers:
+              - MG-1
+              - MG-3
+
+      - label: "Chicken Burgers"
+        display_order: 1
+        description: "Chicken Burgers"
+        identifier: "Sec-2b"
+        items:
+          - label: "Griled Burger"
+            description: "Veg patty Burger"
+            price: 9
+            type: Product
+            display_order: 0
+            identifier: "NVB-1"
+            modifier_group_identifiers:
+              - MG-1
+              - MG-3
+          - label: "Chrispy Burger"
+            description: "Chrispy Burger"
+            price: 9
+            type: Product
+            display_order: 1
+            identifier: "NVB-2"
+            modifier_group_identifiers:
+              - MG-1
+              - MG-3
+          - label: "Chicken Patty Burger"
+            description: "Chicken Patty Burger"
+            price: 9.5
+            type: Product
+            display_order: 2
+            identifier: "NVB-3"
+            modifier_group_identifiers:
+              - MG-1
+              - MG-3
