@@ -6,11 +6,10 @@ module Resolvers
 
     type [Types::ModifierType], null: false
 
-    argument :label, String, required: false
     argument :page, Integer, required: false
     argument :limit, Integer, required: false
 
-    def resolve(label: nil, page: nil, limit: nil)
+    def resolve(page: nil, limit: nil)
       ::ModifierGroups::Finder
         .new
         .page(page)

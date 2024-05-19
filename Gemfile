@@ -22,6 +22,7 @@ gem 'tzinfo-data', platforms: %i[mswin mswin64 mingw x64_mingw jruby]
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
+gem 'graphiql-rails'
 gem 'graphql'
 gem 'graphql-pagination'
 gem 'kaminari'
@@ -36,7 +37,6 @@ end
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   gem 'brakeman'
-  gem 'graphiql-rails'
   gem 'rubocop', require: false
   gem 'sprockets-rails'
 end
