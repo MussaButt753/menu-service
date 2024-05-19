@@ -3,9 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe Menu, type: :model do
-  describe "#valid?" do
-    it 'returns false with null label' do
-      expect(build(:menu, label: nil).valid?).to be false
-    end
+  # Test associations
+  describe 'associations' do
+    it { should have_many(:menu_sections).dependent(:destroy) }
+    it { should have_many(:sections).through(:menu_sections) }
+  end
+
+  # Test validations
+  describe 'validations' do
+    it { should validate_presence_of(:identifier) }
+    it { should validate_presence_of(:label) }
   end
 end

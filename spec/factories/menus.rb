@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :menu do
+    sequence(:identifier)
     label { 'Pizzas menu' }
     state { 'state' }
     start_date { '2024-05-18 06:47:15' }

@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :section do
+    sequence(:identifier)
     label { 'MyString' }
     description { 'MyString' }
   end
