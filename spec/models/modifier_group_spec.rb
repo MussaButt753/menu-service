@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe ModifierGroup, type: :model do
   # Test associations
   describe 'associations' do
-    it { should have_many(:item_modifier_groups) }
-    it { should have_many(:items).through(:item_modifier_groups) }
+    it { should have_one(:item_modifier_group) }
+    it { should have_one(:item).through(:item_modifier_group) }
     it { should have_many(:modifiers) }
   end
 

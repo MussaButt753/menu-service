@@ -9,7 +9,7 @@ module Types
     field :selection_required_min, Integer, null: true
 
     field :modifiers, [ModifierType], null: false
-    field :item_modifier_groups, [ItemModifierGroupType], null: false
-    field :items, [ItemType], null: false
+    field :item_modifier_group, ItemModifierGroupType, null: false
+    field :item, ItemType, null: false
   end
 end

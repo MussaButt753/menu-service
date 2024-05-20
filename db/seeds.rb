@@ -12,25 +12,6 @@
 
 seed_data = YAML.load_file("db/seed_data.yml")
 
-# create modifier groups
-modifier_groups_data = seed_data["modifier_groups"]
-
-modifier_groups_data.each do |modifier_group_data|
-  next if ModifierGroup.exists?(identifier: modifier_group_data["identifier"])
-
-  modifier_group = ModifierGroup.create!(
-    modifier_group_data.slice("identifier", "label", "selection_required_min", "selection_required_max")
-  )
-  modifier_group_data["modifiers"].each do |modifier_data|
-    item = Item.create!(modifier_data["item"])
-    modifier_group.modifiers.create!(
-      modifier_data.slice("price_override", "default_quantity", "display_order").merge({ item:})
-    )
-  end
-end
-
-# create menu
-
 menus_data = seed_data["menus"]
 
 menus_data.each do |menu_data|
@@ -44,14 +25,20 @@ menus_data.each do |menu_data|
     menu_section = menu.menu_sections.create!(section:, menu:, display_order: section_data["display_order"])
 
     section_data["items"].each do |item_data|
-      item = Item.create!(item_data.slice("label", "price", "type", "description", "identifier"))
+      product = Item.create!(item_data.slice("label", "price", "type", "description", "identifier"))
 
-      section.section_items.create!(item:, section:, display_order: item_data["display_order"])
+      section.section_items.create!(item: product, section:, display_order: item_data["display_order"])
       
-      item_data["modifier_group_identifiers"].each do |modifier_group_identifier|
-        modifier_group = ModifierGroup.find_by(identifier: modifier_group_identifier)
+      item_data["modifier_groups"].each do |modifier_group_data|
+        modifier_group = ModifierGroup.create!(modifier_group_data.slice("identifier", "label", "selection_required_min", "selection_required_max"))
+        modifier_group_data["modifiers"].each do |modifier_data|
+          modifier_item = Item.create!(modifier_data["item"])
+          modifier_group.modifiers.create!(
+            modifier_data.slice("price_override", "default_quantity", "display_order").merge({ item: modifier_item})
+          )
+        end
 
-        item.item_modifier_groups.create!(modifier_group:)
+        product.item_modifier_groups.create!(modifier_group:)
       end
     end
   end
