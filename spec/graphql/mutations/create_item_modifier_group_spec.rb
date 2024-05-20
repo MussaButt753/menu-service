@@ -1,0 +1,54 @@
+require 'rails_helper'
+
+RSpec.describe Mutations::CreateItemModifierGroup, type: :request do
+  describe '.resolve' do
+    let(:mutation) do
+      <<~GQL
+        mutation($itemId: Int!, $modifierGroupId: Int!) {
+          createItemModifierGroup(input: { itemId: $itemId, modifierGroupId: $modifierGroupId }) {
+            itemModifierGroup {
+              item { id }
+              modifierGroup { id }
+            }
+          }
+        }
+      GQL
+    end
+
+    before { make_graphql_request(query: mutation, variables:) }
+
+    context 'when the request is valid' do
+      let(:item) { create(:product) }
+      let(:modifier_group) { create(:modifier_group) }
+
+      let(:variables) do
+        {
+          itemId: item.id,
+          modifierGroupId: modifier_group.id
+        }
+      end
+
+      it 'creates a new item_modifier_group and returns the item_modifier_group details' do
+        data = json_response['data']['createItemModifierGroup']['itemModifierGroup']
+
+        expect(data["item"]["id"]).to eq(item.id.to_s)
+        expect(data["modifierGroup"]["id"]).to eq(modifier_group.id.to_s)
+      end
+    end
+
+    context 'when the request is missing required fields' do
+      let(:variables) do
+        {
+          itemId: nil,
+          modifierGroupId: nil,
+        }
+      end
+
+      it 'returns an error' do
+        errors = json_response['errors']
+
+        expect(errors).not_to be_empty
+      end
+    end
+  end
+end

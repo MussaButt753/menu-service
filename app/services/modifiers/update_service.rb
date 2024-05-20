@@ -13,7 +13,7 @@ module Modifiers
     private
 
     def modifier
-      @modifier ||= Modifiers.find(@input[:id])
+      @modifier ||= Modifier.find(@input[:id])
     end
   end
 end

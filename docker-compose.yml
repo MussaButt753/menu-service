@@ -1,5 +1,5 @@
 services:
-  menu-service-api:
+  api:
     container_name: menu-service-api
     stdin_open: true
     tty: true
