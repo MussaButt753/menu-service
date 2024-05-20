@@ -21,7 +21,3 @@ Interact with the service using a GraphQL API, allowing for precise queries and 
   * Explore the GraphQL API: Visit `http://0.0.0.0:3000/graphiql` to access the GraphQL playground and start exploring the API.
 
 * How to run the test suite: `docker-compose run --rm api bundle exec rspec`
-
-* Deployment instructions
-
-* 
